@@ -45,7 +45,7 @@ setup(name = "mecab-python3",
         ["MeCab_wrap.cxx",],
         include_dirs=cmd2("{0} --inc-dir".format(mecab_config)),
         library_dirs=cmd2("{0} --libs-only-L".format(mecab_config)),
-        libraries=cmd2("{0} --libs-only-l".format(mecab_config))
+        libraries=cmd2("{0} --libs-only-l".format(mecab_config)))
     ],
     classifiers = [
         "Programming Language :: Python",
