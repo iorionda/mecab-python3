@@ -26,6 +26,11 @@ else:
     def cmd2(strings):
         return string.split(cmd1(strings))
 
+if 'MECAB_CONFIG' in os.environ:
+  mecab_config = os.environ['MECAB_CONFIG']
+else:
+  mecab_config = 'mecab-config'
+
 setup(name = "mecab-python3",
     version = '0.6',
     description = 'python wrapper for mecab: Morphological Analysis engine',
@@ -38,9 +43,9 @@ setup(name = "mecab-python3",
     ext_modules = [
         Extension("_MeCab",
         ["MeCab_wrap.cxx",],
-        include_dirs=cmd2("mecab-config --inc-dir"),
-        library_dirs=cmd2("mecab-config --libs-only-L"),
-        libraries=cmd2("mecab-config --libs-only-l"))
+        include_dirs=cmd2("{0} --inc-dir".format(mecab_config),
+        library_dirs=cmd2("{0} --libs-only-L".format(mecab_config),
+        libraries=cmd2("{0} --libs-only-l".format(mecab_config))
     ],
     classifiers = [
         "Programming Language :: Python",
